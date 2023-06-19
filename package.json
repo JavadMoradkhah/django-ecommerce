@@ -1,0 +1,19 @@
+{
+  "name": "django-ecommerce",
+  "version": "1.0.0",
+  "description": "Fullstack Django ecommerce website",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavadMoradkhah/django-ecommerce.git"
+  },
+  "author": "Javad Moradkhah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavadMoradkhah/django-ecommerce/issues"
+  },
+  "homepage": "https://github.com/JavadMoradkhah/django-ecommerce#readme"
+}
