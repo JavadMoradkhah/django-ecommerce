@@ -4,7 +4,8 @@
   "description": "Fullstack Django ecommerce website",
   "main": "tailwind.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind:dev": "npx tailwindcss -i ./static/css/index.css -o ./static/css/dist/index.css --watch",
+    "tailwind:prod": "npx tailwindcss -i ./static/css/index.css -o ./static/css/dist/index.css --minify"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JavadMoradkhah/django-ecommerce/issues"
   },
-  "homepage": "https://github.com/JavadMoradkhah/django-ecommerce#readme"
+  "homepage": "https://github.com/JavadMoradkhah/django-ecommerce#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
 }
