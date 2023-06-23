@@ -28,3 +28,11 @@ class CountryAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.FaqCategory)
+class FaqCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+    ordering = ['name']
+    list_per_page = LIST_PER_PAGE

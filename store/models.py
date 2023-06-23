@@ -35,3 +35,11 @@ class Country(models.Model):
     class Meta:
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
+
+
+class FaqCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        verbose_name = 'FAQ Category'
+        verbose_name_plural = 'FAQ Categories'
