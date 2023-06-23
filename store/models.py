@@ -55,6 +55,9 @@ class FAQ(models.Model):
     question = models.CharField(max_length=255, unique=True)
     answer = models.TextField()
 
+    def __str__(self) -> str:
+        return self.question
+
     class Meta:
         verbose_name = 'FAQ'
         verbose_name_plural = 'FAQs'
