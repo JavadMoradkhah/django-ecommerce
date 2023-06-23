@@ -77,3 +77,12 @@ class ColorAdmin(admin.ModelAdmin):
     list_display = ('name', 'code')
     search_fields = ['name']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'unit_price', 'orderable')
+    search_fields = ['name']
+    autocomplete_fields = ['brand', 'category']
+    prepopulated_fields = {"slug": ["name"]}
+    list_per_page = LIST_PER_PAGE
