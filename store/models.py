@@ -1,5 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from colorfield.fields import ColorField
+
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -129,3 +132,28 @@ class Variation(models.Model):
         Size, on_delete=models.PROTECT, related_name='variations'
     )
     quantity_in_stock = models.PositiveSmallIntegerField()
+
+
+class Review(models.Model):
+    REVIEW_STATUS_PENDING = 'pending'
+    REVIEW_STATUS_CONFIRMED = 'confirmed'
+    REVIEW_STATUS_REJECTED = 'rejected'
+
+    REVIEW_STATUS_CHOICES = (
+        ('PENDING', REVIEW_STATUS_PENDING),
+        ('CONFIRMED', REVIEW_STATUS_CONFIRMED),
+        ('REJECTED', REVIEW_STATUS_REJECTED)
+    )
+
+    status = models.CharField(
+        max_length=50, choices=REVIEW_STATUS_CHOICES, default=REVIEW_STATUS_PENDING
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='reviews'
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews'
+    )
+    rating = models.DecimalField(max_digits=2, decimal_places=1)
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

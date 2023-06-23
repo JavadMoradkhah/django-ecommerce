@@ -95,3 +95,12 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
     inlines = [VariationInline]
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('status', 'user', 'product', 'rating')
+    autocomplete_fields = ['user', 'product']
+    list_select_related = ['user', 'product']
+    readonly_fields = ('user', 'product', 'rating', 'comment')
+    list_per_page = LIST_PER_PAGE
