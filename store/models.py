@@ -75,6 +75,9 @@ class ShippingMethod(models.Model):
 class Size(models.Model):
     value = models.CharField(max_length=50, unique=True)
 
+    def __str__(self) -> str:
+        return self.value
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
