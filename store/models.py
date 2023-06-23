@@ -216,3 +216,24 @@ class WishlistItem(models.Model):
 
     class Meta:
         unique_together = ('wishlist', 'product')
+
+
+class Address(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name='addresses'
+    )
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50)
+    country = models.ForeignKey(
+        Country, on_delete=models.PROTECT, related_name='addresses'
+    )
+    region = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    address_line1 = models.CharField(max_length=255)
+    address_line2 = models.CharField(max_length=255, null=True, blank=True)
+    unit_number = models.CharField(max_length=20, null=True, blank=True)
+    postal_code = models.CharField(max_length=20)
+    is_default = models.BooleanField(default=False)
+    description = models.CharField(max_length=255, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
