@@ -121,6 +121,16 @@ class Product(models.Model):
         return self.name
 
 
+class Promotion(models.Model):
+    product = models.OneToOneField(
+        Product, on_delete=models.CASCADE, related_name='promotion', unique=True
+    )
+    start_date = models.DateField()
+    end_date = models.DateField()
+    discount_rate = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class Variation(models.Model):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name='variations'

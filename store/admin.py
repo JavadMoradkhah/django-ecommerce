@@ -113,3 +113,12 @@ class ReviewAdmin(admin.ModelAdmin):
     list_select_related = ['user', 'product']
     readonly_fields = ('user', 'product', 'rating', 'comment')
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Promotion)
+class PromotionAdmin(admin.ModelAdmin):
+    list_display = ('product', 'start_date', 'end_date', 'discount_rate')
+    search_fields = ['product']
+    autocomplete_fields = ['product']
+    list_select_related = ['product']
+    list_per_page = LIST_PER_PAGE
