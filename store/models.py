@@ -64,3 +64,7 @@ class ShippingMethod(models.Model):
     name = models.CharField(max_length=50, unique=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     is_active = models.BooleanField(default=True)
+
+
+class Size(models.Model):
+    value = models.CharField(max_length=50, unique=True)

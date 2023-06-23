@@ -54,3 +54,11 @@ class ShippingMethodAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Size)
+class SizeAdmin(admin.ModelAdmin):
+    list_display = ['value']
+    search_fields = ['value']
+    ordering = ['value']
+    list_per_page = LIST_PER_PAGE
