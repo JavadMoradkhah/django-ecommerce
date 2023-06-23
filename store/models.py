@@ -134,6 +134,18 @@ class Variation(models.Model):
     quantity_in_stock = models.PositiveSmallIntegerField()
 
 
+class ProductTag(models.Model):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='tags'
+    )
+    tag = models.ForeignKey(
+        Tag, on_delete=models.PROTECT, related_name='product_tags'
+    )
+
+    class Meta:
+        unique_together = ('product', 'tag')
+
+
 class Review(models.Model):
     REVIEW_STATUS_PENDING = 'pending'
     REVIEW_STATUS_CONFIRMED = 'confirmed'

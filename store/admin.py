@@ -87,13 +87,22 @@ class VariationInline(admin.TabularInline):
     min_num = 1
 
 
+class ProductTagInline(admin.TabularInline):
+    model = models.ProductTag
+    list_display = ['tag']
+    autocomplete_fields = ['tag']
+    extra = 0
+    min_num = 1
+    max_num = 12
+
+
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'unit_price', 'orderable')
     search_fields = ['name']
     autocomplete_fields = ['brand', 'category']
     prepopulated_fields = {"slug": ["name"]}
-    inlines = [VariationInline]
+    inlines = [ProductTagInline, VariationInline]
     list_per_page = LIST_PER_PAGE
 
 
