@@ -1,4 +1,5 @@
 node_modules/
+media/
 *.sqlite
 *.sqlite3
 __pycache__/
