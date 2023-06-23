@@ -23,3 +23,15 @@ class Brand(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    shippable = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'

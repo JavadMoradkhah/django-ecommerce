@@ -20,3 +20,11 @@ class BrandAdmin(admin.ModelAdmin):
     search_fields = ['name']
     prepopulated_fields = {"slug": ["name"]}
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Country)
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'shippable']
+    search_fields = ['name']
+    ordering = ['name']
+    list_per_page = LIST_PER_PAGE
