@@ -46,3 +46,11 @@ class FaqAdmin(admin.ModelAdmin):
     list_select_related = ['category']
     ordering = ['question']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.ShippingMethod)
+class ShippingMethodAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price', 'is_active']
+    search_fields = ['name']
+    ordering = ['name']
+    list_per_page = LIST_PER_PAGE
