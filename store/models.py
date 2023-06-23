@@ -157,3 +157,21 @@ class Review(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='cart', unique=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(
+        Cart, on_delete=models.CASCADE, related_name='items'
+    )
+    variation = models.ForeignKey(
+        Variation, on_delete=models.PROTECT, related_name='cart_items'
+    )
+    quantity = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
