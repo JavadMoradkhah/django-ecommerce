@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 
 class Category(models.Model):
@@ -77,6 +78,14 @@ class Size(models.Model):
 
     def __str__(self) -> str:
         return self.value
+
+
+class Color(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    code = ColorField(default='#FFFFFF', format='hexa', max_length=50, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Tag(models.Model):

@@ -70,3 +70,10 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ['name']
     prepopulated_fields = {"slug": ["name"]}
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Color)
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code')
+    search_fields = ['name']
+    list_per_page = LIST_PER_PAGE
