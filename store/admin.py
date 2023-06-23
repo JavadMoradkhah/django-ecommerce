@@ -36,3 +36,13 @@ class FaqCategoryAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.FAQ)
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ['question', 'category']
+    search_fields = ['question']
+    autocomplete_fields = ['category']
+    list_select_related = ['category']
+    ordering = ['question']
+    list_per_page = LIST_PER_PAGE

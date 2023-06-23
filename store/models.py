@@ -46,3 +46,15 @@ class FaqCategory(models.Model):
     class Meta:
         verbose_name = 'FAQ Category'
         verbose_name_plural = 'FAQ Categories'
+
+
+class FAQ(models.Model):
+    category = models.ForeignKey(
+        FaqCategory, on_delete=models.PROTECT, related_name='faqs'
+    )
+    question = models.CharField(max_length=255, unique=True)
+    answer = models.TextField()
+
+    class Meta:
+        verbose_name = 'FAQ'
+        verbose_name_plural = 'FAQs'
