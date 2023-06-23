@@ -187,3 +187,22 @@ class CartItem(models.Model):
     )
     quantity = models.PositiveSmallIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Wishlist(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, unique=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class WishlistItem(models.Model):
+    wishlist = models.ForeignKey(
+        Wishlist, on_delete=models.CASCADE, related_name='items'
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='wishlist_items'
+    )
+
+    class Meta:
+        unique_together = ('wishlist', 'product')
