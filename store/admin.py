@@ -79,10 +79,19 @@ class ColorAdmin(admin.ModelAdmin):
     list_per_page = LIST_PER_PAGE
 
 
+class VariationInline(admin.TabularInline):
+    model = models.Variation
+    list_display = ('color', 'size', 'quantity_in_stock')
+    autocomplete_fields = ['color', 'size']
+    extra = 0
+    min_num = 1
+
+
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'unit_price', 'orderable')
     search_fields = ['name']
     autocomplete_fields = ['brand', 'category']
     prepopulated_fields = {"slug": ["name"]}
+    inlines = [VariationInline]
     list_per_page = LIST_PER_PAGE
