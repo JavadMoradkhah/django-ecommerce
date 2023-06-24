@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JavadMoradkhah/django-ecommerce#readme",
   "devDependencies": {
+    "daisyui": "^3.1.6",
     "tailwindcss": "^3.3.2"
   }
 }
