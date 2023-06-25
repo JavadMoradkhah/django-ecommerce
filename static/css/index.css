@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form-control .form-label {
+  @apply label label-text;
+}
+
+.form-control .form-input {
+  @apply input input-bordered w-full;
+}
+
+.form-control.error .form-label {
+  @apply text-red-600;
+}
+
+.form-control.error .form-input {
+  @apply border-red-600 outline-red-600;
+}
+
+.form-errors-list {
+  @apply block text-red-600 text-xs px-1 py-1;
+}

@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link href="{% static '/css/dist/index.css' %}" rel="stylesheet" />
+</head>
+<body class="min-h-screen p-10 flex items-center bg-gray-100">
+
+    <div class="w-11/12 mx-auto max-w-sm p-8 bg-white border rounded-md shadow-xl">
+        <h1 class="text-primary text-center text-xl font-bold mb-2">Create Account</h1>
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
+                <label class="form-label" for="username-input">Username</label>
+                <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
+                {% if form.errors and 'username' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.username %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-control {% if 'email' in form.errors %} error {% endif %}">
+                <label class="form-label" for="email-input">Email</label>
+                <input class="form-input" id="email-input" name="email" type="email" placeholder="Enter your email..." value="{{ form.data.email }}" required />
+                {% if form.errors and 'email' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.email %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-control {% if 'password1' in form.errors %} error {% endif %}">
+                <label class="form-label" for="password-input">Password</label>
+                <input class="form-input {% if 'password2' in form.errors %} border-red-600 outline-red-600 {% endif %}" id="password-input" name="password1" type="password" placeholder="Enter your password..." value="{{ form.data.password1 }}" required />
+                {% if form.errors and 'password1' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.password1 %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-control {% if 'password2' in form.errors %} error {% endif %}">
+                <label class="form-label" for="confirm-password-input">Password Confirmation</label>
+                <input class="form-input" id="confirm-password-input" name="password2" type="password" placeholder="Repeat your password..." required />
+                {% if form.errors and 'password2' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.password2 %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button class="btn btn-primary btn-block mt-4" type="submit">Submit</button>
+        </form>
+        <a class="link block text-sm text-center mx-auto mt-4" href="{% url 'login' %}">Already have an account? Login</a>
+    </div>
+</body>
+</html>

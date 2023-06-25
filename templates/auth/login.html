@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="{% static '/css/dist/index.css' %}" rel="stylesheet" />
+</head>
+<body class="min-h-screen p-10 flex items-center bg-gray-100">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div x-data x-ref="toast" class="fixed top-0 left-0 w-full text-white bg-red-500">
+                <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+                    <div class="flex items-center">
+                        <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
+                            <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z">
+                            </path>
+                        </svg>
+            
+                        <p class="mx-3">{{ message }}</p>
+                    </div>
+            
+                    <button @click="$refs.toast.remove()" class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-800 focus:outline-none">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="w-11/12 mx-auto max-w-sm p-8 bg-white border rounded-md shadow-xl">
+        <h1 class="text-primary text-center text-xl font-bold mb-2">Login</h1>
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
+                <label class="form-label" for="username-input">Username</label>
+
+                <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
+
+                {% if form.errors and 'username' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.username %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-control mt-2 {% if 'password1' in form.errors %} error {% endif %}">
+                <div class="flex justify-between items-center">
+                    <label class="form-label" for="password-input">Password</label>
+                    <a class="link block text-xs text-gray-500" href="/auth/forgot-password">Forgot your password?</a>
+                </div>
+
+                <input class="form-input {% if 'password2' in form.errors %} border-red-600 outline-red-600 {% endif %}" id="password-input" name="password" type="password" placeholder="Enter your password..." value="{{ form.data.password }}" required />
+
+                {% if form.errors and 'password1' in form.errors %}
+                    <ul class="form-errors-list">
+                        {% for error in form.errors.password1 %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button class="btn btn-primary btn-block mt-4" type="submit">Submit</button>
+        </form>
+        <a class="link block text-sm text-center mx-auto mt-4" href="{% url 'signup' %}">Don't have an account? SignUp</a>
+    </div>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+</body>
+</html>
