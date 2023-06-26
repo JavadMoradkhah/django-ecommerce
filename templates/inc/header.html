@@ -1,0 +1,99 @@
+{% load static %}
+<header class="sticky top-0 left-0 right-0 bg-white shadow-md">
+    <div class="px-4 py-3 max-w-7xl mx-auto flex items-center">
+        <a href="/" class="block w-6/12 sm:max-w-[160px]">
+            <img class="block" src="{% static '/images/logo/logo.svg' %}" alt="Logo">
+        </a>
+
+        <div class="flex items-center ml-auto space-x-0.5 sm:space-x-1">
+            <button class="p-1 rounded-md hover:bg-gray-100">  
+                <svg class="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 22L17.1745 17.1745M17.1745 17.1745C17.9999 16.3491 18.6547 15.3692 19.1014 14.2907C19.5481 13.2122 19.778 12.0563 19.778 10.889C19.778 9.72169 19.5481 8.5658 19.1014 7.48734C18.6547 6.40887 17.9999 5.42895 17.1745 4.60353C16.3491 3.77811 15.3692 3.12335 14.2907 2.67664C13.2122 2.22992 12.0563 2 10.889 2C9.72169 2 8.5658 2.22992 7.48734 2.67664C6.40887 3.12335 5.42895 3.77811 4.60353 4.60353C2.93652 6.27055 2 8.5315 2 10.889C2 13.2465 2.93652 15.5075 4.60353 17.1745C6.27055 18.8415 8.5315 19.778 10.889 19.778C13.2465 19.778 15.5075 18.8415 17.1745 17.1745Z" stroke="currentColor" stroke-width="1.24999" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                    
+            </button>
+
+            {% if request.user.is_authenticated %}
+                <div class="relative group">
+                    <button class="p-1 rounded-md hover:bg-gray-100 outline-gray-200 focus:outline">
+                        <svg class="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.16 10.87C12.06 10.86 11.94 10.86 11.83 10.87C9.45 10.79 7.56 8.84 7.56 6.44C7.56 3.99 9.54 2 12 2C14.45 2 16.44 3.99 16.44 6.44C16.43 8.84 14.54 10.79 12.16 10.87Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                    </button>
+                    <div class="absolute hidden group-focus-within:block top-full right-0 min-w-[200px] py-1 bg-white border rounded-md shadow-lg">
+                        <ul class="text-sm">
+                            <li class="border-b border-b-gray-100 hover:bg-gray-50">
+                                <a href="{% url 'logout' %}" class="px-3 py-2 flex items-center space-x-2 text-gray-600">
+                                    <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="32" height="32" rx="16" fill="#DEDFE0"/>
+                                        <path d="M16 16.0003C18.3012 16.0003 20.1667 14.1348 20.1667 11.8337C20.1667 9.53248 18.3012 7.66699 16 7.66699C13.6989 7.66699 11.8334 9.53248 11.8334 11.8337C11.8334 14.1348 13.6989 16.0003 16 16.0003Z" fill="#A6A9AC"/>
+                                        <path d="M16.0002 18.083C11.8252 18.083 8.42517 20.883 8.42517 24.333C8.42517 24.5663 8.6085 24.7497 8.84184 24.7497H23.1585C23.3919 24.7497 23.5752 24.5663 23.5752 24.333C23.5752 20.883 20.1752 18.083 16.0002 18.083Z" fill="#A6A9AC"/>
+                                    </svg>                                                                                                                                                                                                     
+                                    <span class="grow line-clamp-1">{{ request.user.username }}</span>                                    
+                                    <svg class="w-3 h-3 ml-2" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.97578 6.0002C6.97578 6.13353 6.95078 6.26286 6.90078 6.3882C6.85078 6.51353 6.78411 6.61753 6.70078 6.7002L2.10078 11.3002C1.91745 11.4835 1.68411 11.5752 1.40078 11.5752C1.11745 11.5752 0.884114 11.4835 0.700781 11.3002C0.517448 11.1169 0.425781 10.8835 0.425781 10.6002C0.425781 10.3169 0.517448 10.0835 0.700781 9.9002L4.60078 6.0002L0.700781 2.1002C0.517448 1.91686 0.425781 1.68353 0.425781 1.4002C0.425781 1.11686 0.517448 0.88353 0.700781 0.700196C0.884114 0.516863 1.11745 0.425195 1.40078 0.425195C1.68411 0.425195 1.91745 0.516863 2.10078 0.700196L6.70078 5.3002C6.80078 5.4002 6.87178 5.50853 6.91378 5.6252C6.95578 5.74186 6.97645 5.86686 6.97578 6.0002Z" fill="currentColor"/>
+                                    </svg>                                                                                
+                                </a>
+                            </li>
+                            <li class="border-b border-b-gray-100 hover:bg-gray-50">
+                                <a href="{% url 'logout' %}" class="px-4 py-2 flex items-center space-x-2 text-gray-700">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22.0002 6V8.42C22.0002 10 21.0002 11 19.4202 11H16.0002V4.01C16.0002 2.9 16.9103 2 18.0203 2C19.1103 2.01 20.1103 2.45 20.8303 3.17C21.5503 3.9 22.0002 4.9 22.0002 6Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.00024 7V21C2.00024 21.83 2.94022 22.3 3.60022 21.8L5.31024 20.52C5.71024 20.22 6.27025 20.26 6.63025 20.62L8.29022 22.29C8.68022 22.68 9.32027 22.68 9.71027 22.29L11.3903 20.61C11.7403 20.26 12.3002 20.22 12.6902 20.52L14.4003 21.8C15.0603 22.29 16.0002 21.82 16.0002 21V4C16.0002 2.9 16.9002 2 18.0002 2H7.00024H6.00024C3.00024 2 2.00024 3.79 2.00024 6V7Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.00024 9H12.0002" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M6.75024 13H11.2502" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                                                                                    
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            <li class="border-b border-b-gray-100 hover:bg-gray-50">
+                                <a href="{% url 'logout' %}" class="px-4 py-2 flex items-center space-x-2 text-gray-700">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 2H8C4 2 2 4 2 8V21C2 21.55 2.45 22 3 22H16C20 22 22 20 22 16V8C22 4 20 2 16 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 9.5H17" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 14.5H14" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                                                
+                                    <span>Reviews</span>
+                                </a>
+                            </li>
+                            <li class="border-b border-b-gray-100 hover:bg-gray-50">
+                                <a href="{% url 'logout' %}" class="px-4 py-2 flex items-center space-x-2 text-gray-700">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.62 20.8096C12.28 20.9296 11.72 20.9296 11.38 20.8096C8.48 19.8196 2 15.6896 2 8.68961C2 5.59961 4.49 3.09961 7.56 3.09961C9.38 3.09961 10.99 3.97961 12 5.33961C13.01 3.97961 14.63 3.09961 16.44 3.09961C19.51 3.09961 22 5.59961 22 8.68961C22 15.6896 15.52 19.8196 12.62 20.8096Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                                                                                                    
+                                    <span>Wishlist</span>
+                                </a>
+                            </li>
+                            <li class="hover:bg-gray-50">
+                                <a href="{% url 'logout' %}" class="px-4 py-2 flex items-center space-x-2 text-red-600">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.8999 7.56023C9.2099 3.96023 11.0599 2.49023 15.1099 2.49023H15.2399C19.7099 2.49023 21.4999 4.28023 21.4999 8.75023V15.2702C21.4999 19.7402 19.7099 21.5302 15.2399 21.5302H15.1099C11.0899 21.5302 9.2399 20.0802 8.9099 16.5402" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.0001 12H3.62012" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5.85 8.65039L2.5 12.0004L5.85 15.3504" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                        
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="flex items-center space-x-1">
+                    <a href="{% url 'login' %}" class="btn btn-neutral btn-sm">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-sm">SignUp</a>
+                </div>
+            {% endif %}
+
+            <a class="relative p-1 rounded-md hover:bg-gray-100" href="/cart">
+                <span class="badge badge-primary badge-xs absolute -top-1.5 -right-1.5">+99</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" viewBox="0 0 24 24">
+                    <g fill="none">
+                        <path stroke="currentColor" stroke-width="1.5" d="M7.5 18a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Zm9 0a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3Z"/>
+                        <path fill="currentColor" d="m2.261 3.092l.249-.708l-.249.708Zm-.012-.8a.75.75 0 1 0-.498 1.416l.498-1.416Zm2.337 2.031l.62-.423l-.62.423Zm1.302 10.263l-.545.516l.545-.516Zm14.77-4.703l.734.151l.001-.004l-.735-.147Zm-.5 2.425l.735.15l-.735-.15Zm.576-5.61l-.594.456l.595-.457Zm-1.6 8.352l-.474-.581l.474.581ZM5.708 9.76V7.038h-1.5V9.76h1.5ZM2.51 2.384l-.261-.092l-.498 1.416l.261.091l.498-1.415Zm8.428 13.866h5.302v-1.5h-5.302v1.5Zm-5.23-9.212c0-.707.001-1.297-.05-1.776c-.055-.497-.171-.95-.453-1.362l-1.238.846c.09.132.16.314.199.677c.041.38.042.875.042 1.615h1.5ZM2.012 3.8c.668.235 1.107.39 1.43.55c.303.148.437.268.525.397L5.205 3.9c-.284-.416-.662-.682-1.103-.899c-.42-.206-.958-.394-1.592-.617L2.012 3.8Zm2.196 5.96c0 1.453.014 2.5.15 3.3c.147.854.44 1.466.985 2.042l1.089-1.032c-.32-.338-.493-.668-.595-1.263c-.11-.65-.129-1.558-.129-3.047h-1.5Zm6.73 4.99c-1.417 0-2.4-.002-3.141-.107c-.715-.101-1.092-.285-1.365-.573l-1.089 1.032c.594.627 1.347.9 2.243 1.026c.87.124 1.98.122 3.351.122v-1.5Zm-5.98-7.88h12.13v-1.5H4.959v1.5Zm14.965 2.861l-.5 2.425l1.47.303l.5-2.425l-1.47-.303ZM17.09 6.87c.856 0 1.61.001 2.205.067c.295.034.517.08.672.134c.161.057.187.1.174.083l1.189-.914c-.235-.306-.565-.479-.866-.584a4.616 4.616 0 0 0-1.003-.21c-.695-.077-1.543-.076-2.371-.076v1.5Zm4.304 3.16c.17-.848.313-1.56.348-2.13c.037-.586-.03-1.164-.412-1.66l-1.189.914c.062.081.13.226.104.654c-.027.444-.144 1.037-.322 1.928l1.471.294Zm-5.153 6.22c.762 0 1.401.001 1.917-.062c.535-.065 1.024-.209 1.45-.556l-.947-1.163c-.125.102-.303.184-.686.23c-.403.05-.934.051-1.734.051v1.5Zm3.184-4.094c-.162.783-.27 1.303-.4 1.688c-.123.366-.239.523-.364.625l.947 1.163c.427-.348.666-.797.838-1.309c.166-.492.294-1.118.448-1.864l-1.47-.303Z"/>
+                    </g>
+                </svg>
+            </a>
+        </div>
+    </div>
+</header>
