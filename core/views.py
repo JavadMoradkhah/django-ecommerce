@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http.request import HttpRequest
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
 from . import forms
 
@@ -46,3 +46,8 @@ def login_user(request: HttpRequest):
             return redirect('login')
     else:
         return render(request, 'auth/login.html', {'form': None})
+
+
+def logout_user(request: HttpRequest):
+    logout(request)
+    return redirect('/')
