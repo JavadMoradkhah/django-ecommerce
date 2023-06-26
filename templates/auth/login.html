@@ -36,7 +36,7 @@
     <div class="w-11/12 mx-auto max-w-sm p-8 bg-white border rounded-md shadow-xl">
         <h1 class="text-primary text-center text-xl font-bold mb-2">Login</h1>
 
-        <form action="{% url 'login' %}" method="post">
+        <form action="{% url 'login' %}" method="post" x-data="{ loading: false }" @submit="loading=true">
             {% csrf_token %}
 
             <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
@@ -70,7 +70,10 @@
                 {% endif %}
             </div>
 
-            <button class="btn btn-primary btn-block mt-4" type="submit">Submit</button>
+            <button class="btn btn-primary btn-block mt-4" type="submit">
+                <span x-show="loading" class="loading loading-spinner text-white"></span>
+                <span x-show="!loading">Submit</span>
+            </button>
         </form>
         <a class="link block text-sm text-center mx-auto mt-4" href="{% url 'signup' %}">Don't have an account? SignUp</a>
     </div>
