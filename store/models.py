@@ -112,7 +112,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='store/images/products')
     description = models.TextField()
     unit_price = models.DecimalField(max_digits=9, decimal_places=2)
-    discount = models.PositiveSmallIntegerField(default=0)
+    discount = models.PositiveSmallIntegerField(null=True, blank=True)
     order_limit = models.PositiveSmallIntegerField(null=True, blank=True)
     orderable = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
