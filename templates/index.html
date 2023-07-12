@@ -1,17 +1,15 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{% static '/css/dist/index.css' %}" rel="stylesheet" />
-  </head>
-  <body>
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
     {% include 'inc/header.html' %}
 
+    <main class="h-screen flex justify-center items-center">
+      <h1 class="text-primary text-8xl font-bold">Home Page</h1>
+    </main>
+    
     {% include 'inc/footer.html' %}
-
-    <script src="//unpkg.com/alpinejs" defer></script>
-  </body>
-</html>
+{% endblock %}
