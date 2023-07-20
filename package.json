@@ -21,7 +21,6 @@
   "homepage": "https://github.com/JavadMoradkhah/django-ecommerce#readme",
   "devDependencies": {
     "css-loader": "^6.8.1",
-    "daisyui": "^3.1.6",
     "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.2",
     "webpack": "^5.88.2",
