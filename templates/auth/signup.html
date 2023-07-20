@@ -1,70 +1,90 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     SignUp
 {% endblock %}
 
 {% block content %}
-    <main class="min-h-screen p-10 flex items-center bg-gray-100">
-        <div class="w-11/12 mx-auto max-w-sm p-8 bg-white border rounded-md shadow-xl">
-            <h1 class="text-primary text-center text-xl font-bold mb-2">Create Account</h1>
-            <form action="{% url 'signup' %}" method="post" x-data="{ loading: false }" @submit="loading=true">
-                {% csrf_token %}
-    
-                <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
-                    <label class="form-label" for="username-input">Username</label>
-                    <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
-                    {% if form.errors and 'username' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.username %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-    
-                <div class="form-control {% if 'email' in form.errors %} error {% endif %}">
-                    <label class="form-label" for="email-input">Email</label>
-                    <input class="form-input" id="email-input" name="email" type="email" placeholder="Enter your email..." value="{{ form.data.email }}" required />
-                    {% if form.errors and 'email' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.email %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-    
-                <div class="form-control {% if 'password1' in form.errors %} error {% endif %}">
-                    <label class="form-label" for="password-input">Password</label>
-                    <input class="form-input {% if 'password2' in form.errors %} border-red-600 outline-red-600 {% endif %}" id="password-input" name="password1" type="password" placeholder="Enter your password..." value="{{ form.data.password1 }}" required />
-                    {% if form.errors and 'password1' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.password1 %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-    
-                <div class="form-control {% if 'password2' in form.errors %} error {% endif %}">
-                    <label class="form-label" for="confirm-password-input">Password Confirmation</label>
-                    <input class="form-input" id="confirm-password-input" name="password2" type="password" placeholder="Repeat your password..." required />
-                    {% if form.errors and 'password2' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.password2 %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-    
-                <button class="btn btn-primary btn-block mt-4" type="submit">
-                    <span x-show="loading" class="loading loading-spinner text-white"></span>
-                    <span x-show="!loading">Submit</span>
-                </button>
-            </form>
-            <a class="link block text-sm text-center mx-auto mt-4" href="{% url 'login' %}">Already have an account? Login</a>
+    <main class="min-h-screen lg:bg-white">
+
+        <div class="fixed w-full lg:w-1/2 -z-10 lg:z-0 lg:login-image-clip-path">
+
+            <picture>
+                <img class="w-full h-screen object-cover object-center"
+                    src="{% static '/images/image/pexels-cottonbro-studio-4937224.jpg' %}" alt="">
+            </picture>
+
+            <div class="absolute z-10 top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40 backdrop-blur-sm lg:backdrop-blur-0"></div>
         </div>
+
+        
+        <div class="min-h-screen flex flex-col justify-center items-center py-10 lg:ml-[50%]">
+
+            <div class="w-10/12 lg:w-full max-w-sm p-8 lg:p-0 bg-white lg:bg-transparent rounded-xl lg:rounded-none">
+
+                <h1 class="text-primary text-center text-xl font-bold mb-2">Create Account</h1>
+    
+                <form action="{% url 'signup' %}" method="post" x-data="{ loading: false }" @submit="loading=true">
+                    {% csrf_token %}
+        
+                    <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
+                        <label class="form-label" for="username-input">Username</label>
+                        <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
+                        {% if form.errors and 'username' in form.errors %}
+                            <ul class="form-errors-list">
+                                {% for error in form.errors.username %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-control mt-2 {% if 'email' in form.errors %} error {% endif %}">
+                        <label class="form-label" for="email-input">Email</label>
+                        <input class="form-input" id="email-input" name="email" type="email" placeholder="Enter your email..." value="{{ form.data.email }}" required />
+                        {% if form.errors and 'email' in form.errors %}
+                            <ul class="form-errors-list">
+                                {% for error in form.errors.email %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-control mt-2 {% if 'password1' in form.errors %} error {% endif %}">
+                        <label class="form-label" for="password-input">Password</label>
+                        <input class="form-input" id="password-input" name="password1" type="password" placeholder="Enter your password..." value="{{ form.data.password1 }}" required />
+                        {% if form.errors and 'password1' in form.errors %}
+                            <ul class="form-errors-list">
+                                {% for error in form.errors.password1 %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-control mt-2 {% if 'password2' in form.errors %} error {% endif %}">
+                        <label class="form-label" for="confirm-password-input">Password Confirmation</label>
+                        <input class="form-input" id="confirm-password-input" name="password2" type="password" placeholder="Repeat your password..." required />
+                        {% if form.errors and 'password2' in form.errors %}
+                            <ul class="form-errors-list">
+                                {% for error in form.errors.password2 %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+        
+                    <button class="form-btn mt-6" type="submit">
+                        <span x-show="loading" class="text-white"></span>
+                        <span x-show="!loading">Submit</span>
+                    </button>
+                </form>
+    
+                <a class="block w-full mx-auto mt-4 text-sm text-center text-gray-500 hover:underline" href="{% url 'login' %}">Already have an account? Login</a>
+            </div>
+        </div>
+        
     </main>
 {% endblock %}

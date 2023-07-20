@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Login
@@ -6,10 +7,11 @@
 
 {% block content %}
 
-    <main class="min-h-screen p-10 flex items-center bg-gray-100">
+    <main class="min-h-screen lg:bg-white">
+        
         {% if messages %}
             {% for message in messages %}
-                <div x-data x-ref="toast" class="fixed top-0 left-0 w-full text-white bg-red-500">
+                <div x-data x-ref="toast" class="fixed z-20 top-0 left-0 w-full text-white bg-red-500">
                     <div class="container flex items-center justify-between px-6 py-4 mx-auto">
                         <div class="flex items-center">
                             <svg viewBox="0 0 40 40" class="w-6 h-6 fill-current">
@@ -30,49 +32,50 @@
             {% endfor %}
         {% endif %}
 
-        <div class="w-11/12 mx-auto max-w-sm p-8 bg-white border rounded-md shadow-xl">
-            <h1 class="text-primary text-center text-xl font-bold mb-2">Login</h1>
+        <div class="fixed w-full lg:w-1/2 -z-10 lg:z-0 lg:login-image-clip-path">
 
-            <form action="{% url 'login' %}" method="post" x-data="{ loading: false }" @submit="loading=true">
-                {% csrf_token %}
+            <picture>
+                <img class="w-full h-screen object-cover object-center"
+                    src="{% static '/images/image/pexels-cottonbro-studio-4937224.jpg' %}" alt="">
+            </picture>
 
-                <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
-                    <label class="form-label" for="username-input">Username</label>
-
-                    <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
-
-                    {% if form.errors and 'username' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.username %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <div class="form-control mt-2 {% if 'password1' in form.errors %} error {% endif %}">
-                    <div class="flex justify-between items-center">
-                        <label class="form-label" for="password-input">Password</label>
-                        <a class="link block text-xs text-gray-500" href="/auth/forgot-password">Forgot your password?</a>
-                    </div>
-
-                    <input class="form-input {% if 'password2' in form.errors %} border-red-600 outline-red-600 {% endif %}" id="password-input" name="password" type="password" placeholder="Enter your password..." value="{{ form.data.password }}" required />
-
-                    {% if form.errors and 'password1' in form.errors %}
-                        <ul class="form-errors-list">
-                            {% for error in form.errors.password1 %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-
-                <button class="btn btn-primary btn-block mt-4" type="submit">
-                    <span x-show="loading" class="loading loading-spinner text-white"></span>
-                    <span x-show="!loading">Submit</span>
-                </button>
-            </form>
-            <a class="link block text-sm text-center mx-auto mt-4" href="{% url 'signup' %}">Don't have an account? SignUp</a>
+            <div class="absolute z-10 top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40 backdrop-blur-sm lg:backdrop-blur-0"></div>
         </div>
+
+        <div class="min-h-screen flex flex-col justify-center items-center py-10 lg:ml-[50%]">
+
+            <div class="w-10/12 lg:w-full max-w-sm p-8 lg:p-0 bg-white lg:bg-transparent rounded-xl lg:rounded-none">
+
+                <h1 class="text-primary text-center text-xl font-bold mb-2">Login</h1>
+    
+                <form action="{% url 'login' %}" method="post" x-data="{ loading: false }" @submit="loading=true">
+                    {% csrf_token %}
+    
+                    <div class="form-control {% if 'username' in form.errors %} error {% endif %}">
+                        <label class="form-label" for="username-input">Username</label>
+    
+                        <input class="form-input" id="username-input" name="username" type="text" placeholder="Enter your username..." value="{{ form.data.username }}" required />
+                    </div>
+    
+                    <div class="form-control mt-4 {% if 'password1' in form.errors %} error {% endif %}">
+                        <div class="flex justify-between items-center">
+                            <label class="form-label" for="password-input">Password</label>
+                            <a class="link block text-xs text-gray-500 hover:underline" href="/auth/forgot-password">Forgot your password?</a>
+                        </div>
+    
+                        <input class="form-input" id="password-input" name="password" type="password" placeholder="Enter your password..." value="{{ form.data.password }}" required />
+                    </div>
+    
+                    <button class="form-btn mt-4" type="submit">
+                        <span x-show="loading" class="text-white">Please Wait...</span>
+                        <span x-show="!loading">Submit</span>
+                    </button>
+                </form>
+    
+                <a class="block mx-auto mt-4 text-sm text-center text-gray-500 hover:underline" href="{% url 'signup' %}">Don't have an account? SignUp</a>
+            </div>
+
+        </div>
+
     </main>
 {% endblock %}
