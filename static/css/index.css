@@ -10,6 +10,7 @@
 
 body {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  @apply bg-gray-50;
 }
 
 input::-webkit-outer-spin-button,
