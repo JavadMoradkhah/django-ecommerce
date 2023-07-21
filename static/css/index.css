@@ -24,6 +24,30 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+/* Checkbox - Start */
+.checkbox {
+  @apply flex relative text-sm cursor-pointer select-none;
+}
+
+.checkbox input {
+  @apply w-0 h-0 absolute opacity-0 cursor-pointer;
+}
+
+.checkmark {
+  @apply w-5 h-5 bg-transparent bg-cover bg-no-repeat border border-gray-400 rounded-md;
+}
+
+.checkbox:hover input ~ .checkmark {
+  @apply border-primary;
+}
+
+.checkbox input:checked ~ .checkmark {
+  @apply bg-primary border-primary;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='m9 16.2l-3.5-3.5a.984.984 0 0 0-1.4 0a.984.984 0 0 0 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7a.984.984 0 0 0 0-1.4a.984.984 0 0 0-1.4 0L9 16.2z'/%3E%3C/svg%3E");
+}
+/* Checkbox - End */
+
+
 .form-control .form-label {
   @apply block px-0.5 py-1 text-gray-600 text-sm;
 }
