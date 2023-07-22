@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "colorfield",
     'core',
-    'store'
+    'store',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
