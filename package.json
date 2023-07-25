@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "alpinejs": "^3.12.3",
-    "nouislider": "^15.7.1"
+    "nouislider": "^15.7.1",
+    "swiper": "^10.0.4"
   }
 }
