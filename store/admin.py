@@ -122,3 +122,10 @@ class PromotionAdmin(admin.ModelAdmin):
     autocomplete_fields = ['product']
     list_select_related = ['product']
     list_per_page = LIST_PER_PAGE
+
+
+@admin.register(models.Banner)
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ['products']
+    list_per_page = LIST_PER_PAGE
