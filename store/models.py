@@ -237,3 +237,13 @@ class Address(models.Model):
     is_default = models.BooleanField(default=False)
     description = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Banner(models.Model):
+    image = models.ImageField(upload_to='store/images/banners')
+    title = models.CharField(max_length=255)
+    link = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.title
